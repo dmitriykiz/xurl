@@ -44,6 +44,20 @@ func Resolve(flagValue string) (*Token, error) {
 }
 
 // AuthorizationHeader returns the formatted Authorization header value.
+// Note: X API v2 expects "Bearer <token>" — OAuth2 bearer token format.
 func (t *Token) AuthorizationHeader() string {
 	return "Bearer " + t.Value
+}
+
+// SourceName returns a human-readable name for the token source.
+// Useful for debug output or verbose logging.
+func (t *Token) SourceName() string {
+	switch t.Source {
+	case TokenSourceFlag:
+		return "--token flag"
+	case TokenSourceEnv:
+		return EnvVarName + " env var"
+	default:
+		return "unknown"
+	}
 }
