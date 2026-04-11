@@ -6,6 +6,9 @@
 //  1. --token flag value passed on the command line
 //  2. XURL_TOKEN environment variable
 //
+// If no token is found via either method, Resolve returns an error indicating
+// that authentication is required. Tokens are never logged or written to stdout.
+//
 // Example usage:
 //
 //	import "github.com/your-org/xurl/internal/auth"
