@@ -5,6 +5,7 @@
 //
 //  1. --token flag value passed on the command line
 //  2. XURL_TOKEN environment variable
+//  3. XURL_TOKEN_FILE environment variable (path to a file containing the token)
 //
 // If no token is found via either method, Resolve returns an error indicating
 // that authentication is required. Tokens are never logged or written to stdout.
