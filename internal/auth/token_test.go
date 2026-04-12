@@ -36,6 +36,9 @@ func TestResolve_FallsBackToEnv(t *testing.T) {
 }
 
 func TestResolve_NoTokenReturnsError(t *testing.T) {
+	// Use t.Setenv with an empty string and unset to avoid leaking state
+	// between parallel tests. os.Unsetenv doesn't restore on test cleanup.
+	t.Setenv(EnvVarName, "")
 	os.Unsetenv(EnvVarName)
 
 	_, err := Resolve("")
@@ -48,6 +51,7 @@ func TestResolve_NoTokenReturnsError(t *testing.T) {
 }
 
 func TestResolve_WhitespaceIgnored(t *testing.T) {
+	t.Setenv(EnvVarName, "")
 	os.Unsetenv(EnvVarName)
 
 	_, err := Resolve("   ")
