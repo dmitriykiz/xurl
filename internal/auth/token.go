@@ -56,7 +56,9 @@ func (t *Token) SourceName() string {
 	case TokenSourceFlag:
 		return "--token flag"
 	case TokenSourceEnv:
-		return EnvVarName + " env var"
+		// Using the full env var name here makes it easier to copy-paste
+		// into a terminal when debugging missing token issues.
+		return "$" + EnvVarName
 	default:
 		return "unknown"
 	}
