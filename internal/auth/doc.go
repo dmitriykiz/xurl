@@ -10,6 +10,9 @@
 // If no token is found via either method, Resolve returns an error indicating
 // that authentication is required. Tokens are never logged or written to stdout.
 //
+// Note: XURL_TOKEN_FILE is useful for Docker/CI environments where secrets are
+// mounted as files rather than exposed as environment variables directly.
+//
 // Example usage:
 //
 //	import "github.com/your-org/xurl/internal/auth"
