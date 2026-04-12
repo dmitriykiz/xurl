@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"time"
 )
 
 const (
@@ -16,6 +17,9 @@ const (
 
 	// DefaultUserAgent is the user agent string sent with all requests.
 	DefaultUserAgent = "xurl/1.0"
+
+	// DefaultTimeout is the default HTTP client timeout.
+	DefaultTimeout = 15 * time.Second
 )
 
 // Client wraps an http.Client and holds configuration for making API requests.
@@ -28,7 +32,7 @@ type Client struct {
 // NewClient creates a new Client with the given bearer token.
 func NewClient(token string) *Client {
 	return &Client{
-		HTTP:    &http.Client{},
+		HTTP:    &http.Client{Timeout: DefaultTimeout},
 		BaseURL: DefaultBaseURL,
 		Token:   token,
 	}
