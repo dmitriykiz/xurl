@@ -20,7 +20,8 @@ const (
 
 	// DefaultTimeout is the default HTTP client timeout.
 	// Increased from 15s to 30s to avoid premature timeouts on slow connections.
-	DefaultTimeout = 30 * time.Second
+	// Bumped further to 60s for my use case — I often test on flaky connections.
+	DefaultTimeout = 60 * time.Second
 )
 
 // Client wraps an http.Client and holds configuration for making API requests.
