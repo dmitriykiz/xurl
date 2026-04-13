@@ -67,3 +67,13 @@ func TestToken_AuthorizationHeader(t *testing.T) {
 		t.Errorf("AuthorizationHeader() = %q, want %q", got, want)
 	}
 }
+
+// TestToken_AuthorizationHeader_EnvSource verifies that the Bearer prefix is
+// applied regardless of how the token was sourced (flag vs env var).
+func TestToken_AuthorizationHeader_EnvSource(t *testing.T) {
+	tok := &Token{Value: "xyz789", Source: TokenSourceEnv}
+	want := "Bearer xyz789"
+	if got := tok.AuthorizationHeader(); got != want {
+		t.Errorf("AuthorizationHeader() = %q, want %q", got, want)
+	}
+}
