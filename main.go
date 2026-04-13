@@ -1,25 +1,18 @@
+// Package main is the entry point for xurl, a command-line HTTP client
+// for the X (formerly Twitter) API with built-in authentication support.
 package main
 
 import (
 	"fmt"
 	"os"
 
-	"github.com/xdevplatform/xurl/auth"
-	"github.com/xdevplatform/xurl/cli"
-	"github.com/xdevplatform/xurl/config"
+	"github.com/xdevplatform/xurl/cmd"
 )
 
 func main() {
-	// Create a new config from environment variables
-	config := config.NewConfig()
-	auth := auth.NewAuth(config)
-
-	// Create the root command
-	rootCmd := cli.CreateRootCommand(config, auth)
-
-	// Execute the command
+	rootCmd := cmd.NewRootCmd()
 	if err := rootCmd.Execute(); err != nil {
-		fmt.Println(err)
+		fmt.Fprintln(os.Stderr, err)
 		os.Exit(1)
 	}
 }
