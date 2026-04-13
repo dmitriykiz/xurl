@@ -60,6 +60,21 @@ func TestResolve_WhitespaceIgnored(t *testing.T) {
 	}
 }
 
+// TestResolve_TabsAndNewlinesIgnored extends the whitespace test to cover tab
+// and newline characters, which could sneak in via copy-paste or shell
+// variable expansion.
+func TestResolve_TabsAndNewlinesIgnored(t *testing.T) {
+	t.Setenv(EnvVarName, "")
+	os.Unsetenv(EnvVarName)
+
+	for _, input := range []string{"\t", "\n", "\t  \n"} {
+		_, err := Resolve(input)
+		if err != ErrNoToken {
+			t.Errorf("Resolve(%q): expected ErrNoToken, got %v", input, err)
+		}
+	}
+}
+
 func TestToken_AuthorizationHeader(t *testing.T) {
 	tok := &Token{Value: "abc123", Source: TokenSourceFlag}
 	want := "Bearer abc123"
