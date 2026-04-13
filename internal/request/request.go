@@ -19,7 +19,8 @@ const (
 	DefaultUserAgent = "xurl/1.0"
 
 	// DefaultTimeout is the default HTTP client timeout.
-	DefaultTimeout = 15 * time.Second
+	// Increased from 15s to 30s to avoid premature timeouts on slow connections.
+	DefaultTimeout = 30 * time.Second
 )
 
 // Client wraps an http.Client and holds configuration for making API requests.
