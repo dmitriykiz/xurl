@@ -1,5 +1,7 @@
 // Package main is the entry point for xurl, a command-line HTTP client
 // for the X (formerly Twitter) API with built-in authentication support.
+//
+// Personal fork: using this to experiment with the X API v2 endpoints.
 package main
 
 import (
