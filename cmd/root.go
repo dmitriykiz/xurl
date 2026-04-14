@@ -52,8 +52,8 @@ automatically via flag or environment variable (X_BEARER_TOKEN).`,
 	}
 
 	cmd.PersistentFlags().StringVarP(&opts.Token, "token", "t", "", "Bearer token for authentication (overrides X_BEARER_TOKEN env var)")
-	// Default verbose to true so I always see status info without having to pass -v
-	cmd.PersistentFlags().BoolVarP(&opts.Verbose, "verbose", "v", true, "Enable verbose output")
+	// Default verbose to false; pass -v when I actually need to debug a request.
+	cmd.PersistentFlags().BoolVarP(&opts.Verbose, "verbose", "v", false, "Enable verbose output")
 
 	return cmd
 }
