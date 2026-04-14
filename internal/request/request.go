@@ -61,6 +61,9 @@ func (c *Client) Do(method, path string, params url.Values, body io.Reader) (*ht
 		req.Header.Set("Content-Type", "application/json")
 	}
 
+	// Set Accept header to explicitly request JSON responses.
+	req.Header.Set("Accept", "application/json")
+
 	resp, err := c.HTTP.Do(req)
 	if err != nil {
 		return nil, fmt.Errorf("executing request: %w", err)
