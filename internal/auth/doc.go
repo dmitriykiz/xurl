@@ -13,6 +13,9 @@
 // Note: XURL_TOKEN_FILE is useful for Docker/CI environments where secrets are
 // mounted as files rather than exposed as environment variables directly.
 // Token files should have permissions set to 0600 to avoid accidental exposure.
+// Leading and trailing whitespace (including newlines) is trimmed from token
+// files automatically, so tools like `echo` or editors that append a trailing
+// newline won't cause authentication failures.
 //
 // Example usage:
 //
